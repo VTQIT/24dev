@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Eye } from 'lucide-react';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { Component } from '@/types';
+import type { Component } from '@/types'; // ✅ FIXED (type-only import)
 import { cn } from '@/lib/utils';
 
 interface ComponentCardProps {
@@ -35,13 +35,13 @@ export function ComponentCard({ component, className }: ComponentCardProps) {
     >
       {/* Preview Area */}
       <div className="aspect-[16/10] bg-gray-50 relative overflow-hidden">
-        {/* Placeholder gradient preview */}
+        {/* Gradient preview */}
         <div className={cn(
           "absolute inset-0 bg-gradient-to-br opacity-80",
           gradient
         )} />
         
-        {/* Mock UI elements */}
+        {/* Mock UI */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
             <div className="w-16 h-2 bg-white/40 rounded mb-2" />
@@ -53,7 +53,7 @@ export function ComponentCard({ component, className }: ComponentCardProps) {
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-200" />
       </div>
 
-      {/* Content Area */}
+      {/* Content */}
       <div className="p-3">
         <div className="flex items-center gap-2">
           <Avatar className="w-5 h-5">
@@ -67,7 +67,9 @@ export function ComponentCard({ component, className }: ComponentCardProps) {
         </div>
         <div className="flex items-center gap-1 mt-1.5 text-gray-500">
           <Eye className="w-3.5 h-3.5" />
-          <span className="text-xs">{component.uses.toLocaleString()}</span>
+          <span className="text-xs">
+            {component.uses.toLocaleString()}
+          </span>
         </div>
       </div>
     </Link>
